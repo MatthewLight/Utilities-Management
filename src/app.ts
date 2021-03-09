@@ -7,9 +7,8 @@ dotenv.config();
 
 const app = express();
 
-app.use(router);
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 const connectDB = async() => {
   try {
@@ -23,5 +22,7 @@ const connectDB = async() => {
 connectDB();
 
 const { PORT } = process.env;
+
+app.use(router);
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
